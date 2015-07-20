@@ -8,8 +8,15 @@
 
 // 알고리즘의 성능 측정
 // 프로그램의 수행 시간을 측정
-// Win32API를 사용해서 성능 측정
-// Windows에서 제공하는 정확한 타이머
+
+// 3. debugging시 @CLK 사용
+// breakpoint : f9
+// 1. breakpoint를 찍고, f5를 누른 뒤, 디버거 모드 진입
+// 2. @CLK를 입력하고, value를 0으로 초기화 시킨다.
+// 3. continue를 하면 해당 모듈의 수행시간을 microsecond 단위로 확인 해 볼 수 있다.
+
+// 디버깅 모드이기 때문에 추가 작업이 행해져 정확한 수행시간을 알아낼 수는 없지만
+// 상대적으로 여러 작업들에 대한 수행 시간을 비교해 볼 수 있다.
 
 #if 1
 #include <stdio.h>
@@ -17,7 +24,26 @@
 
 void foo()
 {
-	Sleep(300);
+	Sleep(3);
+}
+
+int main()
+{
+	foo();
+}
+#endif
+
+// 2. Win32API를 사용해서 성능 측정
+// Windows에서 제공하는 정확한 타이머
+// cpu속도와 성관없는 timer의 초당 counter 값을 지원한다.
+// system에서 제공하는 고성능 timer 사용
+#if 0
+#include <stdio.h>
+#include <Windows.h>
+
+void foo()
+{
+	Sleep(3000);
 }
 
 int main()
@@ -34,7 +60,7 @@ int main()
 	foo();
 	QueryPerformanceCounter(&end);
 
-	// millisecond 단위로 측정
+	// microsecond 단위로 측정
 	elapsed = end.QuadPart - begin.QuadPart;
 
 	printf("%lf\n", (double)elapsed / frequency.QuadPart);
