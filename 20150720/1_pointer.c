@@ -9,6 +9,32 @@
 // 8. 그래프
 // 9. 최소신장트리와 최단거리
 
+// 7. 구조체의 정렬 제한을 강제로 1로 변경하는 방법
+// MSVC 
+// #pragma pack(1)
+// #pragma pack(push, 1)
+// #pragma pack(pop)
+// GCC
+// __attribute__((__packed__))
+// __attribute__((__alignof__(1)))
+
+#if 1
+#pragma pack(push, 1)
+struct B
+{
+	char a;
+	int b;
+	char c;
+};
+#pragma pack(pop)
+
+int main()
+{
+	printf("%d\n", sizeof(struct B));	// 8, 12
+	printf("%d\n", __alignof(struct B));	// 8, 12
+}
+#endif
+
 // 6. 구조체의 정렬 제한
 // 정렬 제한이란
 // 데이터가 메모리에 저장될 때 해당 메모리 주소에 대한 제약 사항
@@ -20,19 +46,26 @@
 // short : 2
 // char : 1
 // 구조체의 패딩 : 정렬 제한을 통해 메모리에 생기는 공백 영역
-#if 1
+// 데이터가 메모리에 배치할 시작주소를 결정하기 위한 데이터의 크기
+// MSVC : __alignof
+// GCC  : __alignof__
+#if 0
 struct A
 {
 	int a;
 	char b;
 	char c;
+	char d;
+	char e;
 };
 
 struct B
 {
 	char a;
+	char d;
 	int b;
 	char c;
+	char e;
 };
 
 int main()
