@@ -18,5 +18,8 @@
     <ClCompile Include="1_pointer.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="2_알고리즘성능측정.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
