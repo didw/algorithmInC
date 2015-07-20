@@ -21,5 +21,11 @@
     <ClCompile Include="2_알고리즘성능측정.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="3_알고리즘성능분석.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="4_maxsum.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
