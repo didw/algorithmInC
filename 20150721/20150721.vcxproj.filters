@@ -26,5 +26,14 @@
     <ClCompile Include="1_selection_sort.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="2_insertion_sort.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="3_bubble.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="4_quick_sort.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
