@@ -23,5 +23,8 @@
     <ClCompile Include="algorithm.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="1_selection_sort.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

@@ -81,6 +81,7 @@
     <ClInclude Include="algorithm.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="1_selection_sort.c" />
     <ClCompile Include="algorithm.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
