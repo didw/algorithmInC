@@ -19,6 +19,23 @@ void insert_data(NODE *temp, NODE *head)
 	temp->next = head->next;
 	head->next = temp;
 }
+
+void reverse(NODE *head)
+{
+	NODE *prev = head;
+	NODE *curr = head->next; 
+	NODE *next;
+
+	while (curr != head )
+	{
+		next = curr->next;
+		curr->next = prev;
+		prev = curr;
+		curr = next;
+	}
+	head->next = prev;
+
+}
 //-----------------------------------------------------
 
 void display(NODE *head)
@@ -44,5 +61,9 @@ int main()
 		insert_data(temp + i, &head);
 		display(&head);
 	}
+	reverse(&head);
+	display(&head);
+	reverse(&head);
+	display(&head);
 	return 0;
 }

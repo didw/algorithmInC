@@ -27,5 +27,11 @@
     <ClCompile Include="4_maxsum.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="doublyList.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="singlyList.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

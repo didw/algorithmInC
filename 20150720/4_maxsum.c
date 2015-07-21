@@ -3,6 +3,7 @@
 // a[] = {1, 4, -9, 2, 8, -1, 9, 3}
 // 1. 완전 탐색법 ( brute-force )
 #include <stdio.h>
+#include <time.h>
 #define max(a, b) ((a) > (b) ? (a) : (b))
 
 // 시간 복잡도 : O(N^2)
@@ -86,12 +87,41 @@ int fastestMaxSum(int *a, int n)
 	return ret;
 }
 
+// 알고리즘의 수행시간 측정하기
+// 1. 배열의 길이를 10000으로 설정
+// 2. init() 배열의 값을 rand()함수를 이용해서 난수로 채운다.
+//    단, 배열의 값은 100미만으로 한다.
+// 3. 초기화시 배열의 인덱스가 3의 배수이면 음수로 채운다.
+
+#define SIZE 100000
+void init(int *a, int n)
+{
+	int sign = 1, i;
+	srand(time(0));
+	for (i = 0; i < n; i++)
+	{
+		sign = i % 3 ? 1 : -1;
+		a[i] = (rand() % 100) * sign;
+	}
+}
+
 int main()
 {
-	int a[] = { 1, 4, -9, 2, 8, -1, 9, 3 };
+	int a[SIZE];
 	int n = sizeof(a) / sizeof(a[0]);	// 배열 원소의 갯수
-	printf("maxSum : %d\n", maxSum(a, n));
-	printf("fastMaxSum : %d\n", fastMaxSum(a, n));
-	printf("fastestMaxSum : %d\n", fastestMaxSum(a, n));
+	clock_t t1, t2, t3, t4;
+
+	init(a, n);
+	t1 = clock();
+	printf("maxSum			: %d\n", maxSum(a, n));
+	t2 = clock();
+	printf("fastMaxSum		: %d\n", fastMaxSum(a, n));
+	t3= clock();
+	printf("fastestMaxSum	: %d\n", fastestMaxSum(a, n));	
+	t4 = clock();
+	// 수행시간 측정
+	printf("maxSum			: %lf\n", (double)(t2 - t1) / CLOCKS_PER_SEC);
+	printf("fastMaxSum		: %lf\n", (double)(t3 - t2) / CLOCKS_PER_SEC);
+	printf("fastestMaxSum	: %lf\n", (double)(t4 - t3) / CLOCKS_PER_SEC);
 	return 0;
 }
