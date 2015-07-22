@@ -45,6 +45,22 @@ int fastsum(int n)
 	return 2 * fastsum(n / 2) + n / 2 * n / 2;
 }
 
+int* mergesort(int* a, int n) {
+	int* res = (int*)malloc(sizeof(int)*n);
+	int i = 0, j = 0, idx = 0;
+	int* aa = mergesort(a, n / 2);
+	int* bb = mergesort(a + n / 2, n - n / 2);
+	int na = n / 2, nb = n - n / 2;
+		
+	while (i < na || j < nb) {
+		if (aa[i] > bb[j])
+			res[idx++] = bb[j++];
+		else
+			res[idx++] = aa[i++];
+	}
+	return res;
+}
+
 int main()
 {
 	//start_timer();
