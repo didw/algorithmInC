@@ -11,12 +11,54 @@ n번째 달의 토끼 쌍의 수는 ?
 */
 #include "algorithm.h"
 
+// 동적 계획법 ( dynamic programming )
+// 문제를 분할 정복처럼 작은 문제로 나눈다.
+// 작은 문제를 해결한 뒤 테이블에 저장한다.
+// 저장한 값을 이용해서 부분해의 최적해를 구하고, 전체 문제의 최적해를 구한다.
+
+// 분할정복과 동적 계획법의 차이
+// 문제를 나누는 방식
+// 분할 정복법 : top-down방식으로 큰 문제를 작은 문제로 쪼개면서 문제를 해결한다.
+// 동적 계획법 : bottom-up 방식으로 작은 문제의 해를 구해, 전체 문제의 해를 구하는데 사용한다.
+//              부분해를 구할 때, 이전에 구한 부분해에 의존한다.
+
+// 메모이제이션 (memoization)
+// 컴퓨터 프로그래밍에서 동일한 계산을 반복할 때, 최초 한번은 계산하지만
+// 계산한 값을 테이블에 저장하고, 다음 계산부터는 테이블에 값을 반환하는 형태로 
+// 프로그램 중 반복 수행을 제거하여 실행 속도를 빠르게 하는 기술
+// 동적 계획법의 핵심 기술 !!!
+
+// 동적 계획법으로 문제를 해결할 수 있는 조건
+// 최적 부분 구조 (optimal substructure)
+// : 소문제의 해가 전체 문제의 해를 만들어 내는 구조
+// 중복 부분 문제 (overlapping subproblems)
+// : 두번이상 반복되어 계산되는 문제가 있는 경우
 int fibo(int n)
 {
+	// 점화식을 이용해서 재귀함수로 구현해보세요.
+	if (n == 0) return 0;
+	if (n == 1) return 1;
+	return fibo(n - 1) + fibo(n - 2);
+}
 
+int arr[100];
+int fibo2(int n)
+{
+	int i;
+	arr[0] = 0;
+	arr[1] = 1;
+	for (i = 2; i <= n; i++)
+		arr[i] = arr[i - 1] + arr[i - 2];
+	return arr[n];
 }
 
 int main()
 {
-	printf("%d\n", fibo(8));
+	start_timer();
+	printf("%d\n", fibo(40));
+	end_timer();
+
+	start_timer();
+	printf("%d\n", fibo2(40));
+	end_timer();
 }
