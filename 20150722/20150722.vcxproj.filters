@@ -30,6 +30,18 @@
     <ClCompile Include="1_분할정복.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="2_merge_sort.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="3_피보나치수.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="4_이항계수.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="5_0-1knapsack.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="rbtree.h">
