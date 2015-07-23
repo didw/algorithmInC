@@ -27,6 +27,12 @@
     <ClCompile Include="4_fractional_knapsack.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="5_coinchange.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="6_work.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="1_chip.txt">
