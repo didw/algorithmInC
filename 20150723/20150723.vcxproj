@@ -93,7 +93,10 @@
     <ClCompile Include="5_coinchange.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="6_work.c" />
+    <ClCompile Include="6_work.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="7_dfs.c" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="1_chip.txt" />
