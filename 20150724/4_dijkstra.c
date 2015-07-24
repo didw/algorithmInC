@@ -20,17 +20,19 @@
 // 4. 3번 과정을 반복 후 모든 정점을 연결하면 종료한다.
 
 #include <stdio.h>
+#include <string.h>
 
 #define MAX 100
 
-int adj[MAX][MAX];
-int dist[MAX];
+float adj[MAX][MAX];
+float dist[MAX];
 int priority[MAX];
 int visited[MAX];
 int parent[MAX];
 int cost;
 int V, E;
 int heap[MAX];
+char cities[MAX][12];
 int nheap = 0;
 
 void upheap(int k)
@@ -106,7 +108,7 @@ int int2name(int i)
 void dijkstra(int k)
 {
 	int i, u;
-	int cost = 0, next_cost = 0;
+	float cost = 0, next_cost = 0;
 	pq_init();
 
 	for (i = 0; i < V; i++)
@@ -116,7 +118,7 @@ void dijkstra(int k)
 
 	pq_insert(k);
 	dist[k] = 0;
-	parent[k] = 0;
+	parent[k] = k;
 
 	while (!pq_empty())
 	{
@@ -143,44 +145,72 @@ void dijkstra(int k)
 void input()
 {
 	scanf("%d %d", &V, &E);
-	int a, b, c;
-	char vertex[3];
+	int a, b;
+	float c;
 	int i;
 	for (i = 0; i < E; i++)
 	{
-		scanf("%s %d", vertex, &c);
-		a = name2int(vertex[0]);
-		b = name2int(vertex[1]);
+		scanf("%d %d %f\n", &a, &b, &c);
 		adj[a][b] = c;
 	}
+	for (i = 0; i < V; ++i)
+		gets(cities[i]);
 }
 
 // 각 경로의 최단거리와 경유하는 정점을 화면에 출력하세요.
-void shortest_path()
+void shortest_path(int b)
 {
-	int i;
+	int i = b;
 	int path[MAX];
-	for (i = 0; i < V; ++i) {
-		int end = i, idx = 0;
-		while (parent[end] != end) {
-			path[idx++] = end;
-			end = parent[end];
-		}
-		path[idx] = 0;
-		for (int j = idx; j >= 0; --j) {
-			printf("%d ", path[j]);
-			if (j) printf("-> ");
-		}
-		printf("\n");
+	int idx = 0;
+	while (parent[i] != i) {
+		path[idx++] = i;
+		i = parent[i];
 	}
+	path[idx] = i;
+	for (int j = idx; j >= 0; --j) {
+		printf("%s ", cities[path[j]]);
+		if (j) printf("-> ");
+	}
+	printf("\n total length : %f\n\n", dist[b]);
+}
+
+int str2int(char *a) {
+	for (int i = 0; i < V; ++i) {
+		if (strcmp(cities[i], a) == 0)
+			return i;
+	}
+	return -1;
+}
+
+void reset() {
+	memset(dist, 0, sizeof(dist));
+	memset(priority, 0, sizeof(priority));
+	memset(visited, 0, sizeof(visited));
+	memset(parent, 0, sizeof(parent));
+	memset(heap, 0, sizeof(heap));
 }
 
 int main()
 {
 	int i;
 	input();
-	dijkstra(0);
-	for (i = 0; i < V; i++)
-		printf("%c %c shortest path : %d\n", int2name(0), int2name(i), dist[i]);
-	shortest_path();
+	while (1) {
+		char aa[10], bb[10];
+		int a = 0, b = 0;
+		printf("출발지: ");
+		gets(aa);
+		printf("도착지: ");
+		gets(bb);
+		a = str2int(aa);
+		b = str2int(bb);
+		if (a == -1 || b == -1) {
+			printf("정확한 역이름을 입력해주세요.\n");
+			continue;
+		}
+		reset();
+		dijkstra(a);
+		shortest_path(b);
+		getch();
+	}
 }
