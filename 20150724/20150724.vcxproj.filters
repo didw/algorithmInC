@@ -24,6 +24,9 @@
     <ClCompile Include="3_kruskal.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="4_dijkstra.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="sample.txt">
