@@ -37,9 +37,13 @@ int n;
 
 void bfs(int i)
 {
+	node *t;
+	int j;
 	init_queue();
+
 	put(i);
 	visited[i] = 1;
+	// visit(i);
 	printf("%c\n", (char)(i + 'A'));
 
 	// 1. 큐가 차있는 동안에
@@ -47,31 +51,81 @@ void bfs(int i)
 	// 3. 해당 정점과 인접한 정점들 중 방문하지 않은 정점들을 "방문했음"으로 표시하고
 	//    큐에 추가한다.
 	// 4. "방문했음"이라 함은 화면에 해당 정점을 출력하는 것을 의미한다.
-	while (!is_empty()) {
-		node* t = adj[get()];
-		while (t != NULL) {
-			if (!visited[t->vertex]){
+	while (!is_empty())
+	{
+		j = get();
+		for (t = adj[j]; t != NULL; t = t->next)
+		{
+			if (visited[t->vertex] == 0)
+			{
 				put(t->vertex);
 				visited[t->vertex] = 1;
 				printf("%c\n", (char)(t->vertex + 'A'));
 			}
-			t = t->next;
 		}
 	}
-	
 }
 
-void bfs_all()
+// 가중치가 없는 그래프에서의 최단 거리는
+// 간선의 수를 말한다.
+// 가중치가 없는 그래프에서의 최단 거리는 너비 우선 탐색만으로 해결할 수 있다.
+int dist[100];
+int parent[100];
+
+void bfs2(int i)
 {
-	int i;
+	node *t;
+	int j;
+	init_queue();
+
 	for (i = 0; i < n; i++)
-		if (visited[i] == 0)
-			bfs(i);
+	{
+		dist[i] = -1;
+		parent[i] = -1;
+	}
+	i = 0;
+	put(i);
+	dist[i] = 0;
+	parent[i] = i;
+
+	while (!is_empty())
+	{
+		j = get();
+		for (t = adj[j]; t != NULL; t = t->next)
+		{
+			if (dist[t->vertex] == -1)
+			{
+				put(t->vertex);
+				dist[t->vertex] = dist[j] + 1;	// 최단 경로 거리값
+				parent[t->vertex] = j;			// 부모를 역추적하기 위한 값
+			}
+		}
+	}
+}
+
+// 루트부터 u정점에 최단 경로를 구하는 함수
+int path[100];
+// A - B - C
+// C - B - A
+void shortest_path(int u)
+{
+	int idx = 0;
+	int i;
+	path[idx++] = u;
+	printf("최단 거리 : %d\n", dist[u]);
+	while (parent[u] != u)
+	{
+		u = parent[u];	// 자신의 부모를 찾는다. 자신이 부모가 될때까지
+		path[idx++] = u;
+	}
+
+	for (i = idx - 1; i >= 0; i--)
+		printf("%c\n", (char)(path[i] + 'A'));
 }
 
 int main()
 {
-	int i, k;
+	int i, j, k;
 	int a = 0, b = 0;
 	node *t, *s;
 	scanf("%d %d", &n, &k);
@@ -104,5 +158,7 @@ int main()
 			s->next = t;
 		}
 	}
-	bfs_all();
+	// 너비 우선 탐색 호출
+	bfs2(0);
+	shortest_path(4);
 }
