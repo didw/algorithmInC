@@ -27,6 +27,9 @@
     <ClCompile Include="4_dijkstra.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="5_subway.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="sample.txt">
