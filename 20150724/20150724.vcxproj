@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{8C9D895E-9BED-42F3-BA6D-A69B2F08698D}</ProjectGuid>
+    <ProjectGuid>{64197E3A-AD6D-4714-BDA8-84FCEE752300}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>My20150724</RootNamespace>
   </PropertyGroup>
@@ -78,6 +78,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="1_priority_queue.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
