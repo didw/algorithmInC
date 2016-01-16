@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html ng-app="app">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+    <script src="Scripts/angular.js"></script>
+</head>
+<body ng-controller="Main as vm">
+    <h1 id="h1Obj" class="h1ObjClass" name="h1ObjName"> {{vm.food}}</h1>
+    <script>
+        (function () {
+            'use strict';
+
+            angular
+                .module('app', [])
+                .controller('Main', main);
+
+            function main() {
+                var vm = this;
+                vm.food = 'Chinese food';
+            }
+        })();
+    </script>
+    <!--<script>
+        var foo = (function boo() {
+
+        })();
+
+        var foo2 = foo || {};
+    </script>-->
+</body>
+</html>
