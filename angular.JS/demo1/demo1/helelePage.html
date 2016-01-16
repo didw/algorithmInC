@@ -1,0 +1,93 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+</head>
+<body>
+    <h1 id="h1Obj" class="h1ObjClass" name="h1ObjName">Good Morning!</h1>
+
+    <script type="text/javascript">
+        function say(word)
+        {
+            alert(word);
+        }
+
+        function execution(callbackFunc, value)
+        {
+            callbackFunc(value);
+        }
+
+        // execution(say, "callback Function test");
+
+        var kkk = function heleleFunc()
+        {
+            alert("hello world");
+        }
+        // kkk();
+    </script>
+
+    <script type="text/javascript">
+        // kkk();
+        // OOP javascript ==> functional javascript...
+        var printPerson = function (a)
+        {
+            alert("age:" + a.age + "\nname: " + a.name + "\nmale?:" + a.male);
+            alert("age:" + a["age"] + "\nname: " + a["name"] + "\nmale?:" + a["male"]);
+        }
+
+        var printPerson2 = function (a)
+        {
+            for (var i in a)
+            {
+                alert(i + ":" + a[i]);
+            }            
+        }
+
+        var person = {};
+        person.age = 35;
+        person.name = "didw";
+        person.male = true;
+        //printPerson(person);
+
+        var person2 = { age: 34, name: "nooree", male: false };
+        //printPerson2(person2);
+
+        var person3 = {
+            people: [
+                { age: 24, name: "nooree", male: false },
+                { age: 34, name: "chulsu", male: true },
+                { age: 44, name: "jimann", male: true }
+            ]
+        };
+
+        for (var i in person3) {
+            //alert(i + ":" + person3[i]);
+            for(var j in person3[i]) {
+                //alert(j + ":" + person3[i][j])
+                //for (var k in person3[i][j]) {
+                //    alert(k + ":" + person3[i][j][k])
+                //}
+                //printPerson2(person3[i][j]);
+            }
+        }
+
+    </script>
+
+    <script>
+        var x = 10;
+        var foo = function () {
+            console.log(this.x);
+        }
+        foo();
+
+        var obj = { x: 12 };
+        foo.apply(obj); // 
+
+        var obj2 = { x: 18 };
+        foo.call(obj2);
+        
+    </script>
+</body>
+</html>
